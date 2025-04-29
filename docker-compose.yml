@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - db_data:/app # Volume for SQLite database persistence
+    ports:
+      - "8000:8000"
+    # Removed depends_on: - db as there is no separate db service
+
+volumes:
+  db_data: # Define the named volume
